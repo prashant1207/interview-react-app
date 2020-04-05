@@ -9,7 +9,7 @@ class MockService {
         let result = [];
         for (let i = 0; i < 10; i++) {
             let item = {
-                text: quotes[getRandomNumber(0, quotes.length)],
+                text: quotes[this.getRandomNumber(0, quotes.length)],
                 timestamp: Date.now()
             }
             if (i % 2 === 0) {
@@ -27,7 +27,7 @@ class MockService {
     streamChat = async (friend, timestamp) => {
         let item = {
             user: friend,
-            text: quotes[getRandomNumber(0, quotes.length)],
+            text: quotes[this.getRandomNumber(0, quotes.length)],
             timestamp: Date.now()
         }
 

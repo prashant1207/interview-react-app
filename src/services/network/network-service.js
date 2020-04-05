@@ -1,7 +1,7 @@
 import MockService from './mock/mock-service';
 import HttpService from './http/http-service';
 import Config from '../config/config';
-const service = Config.backend() == 'mock' ? new MockService() : new HttpService();
+const service = Config.backend() === 'mock' ? new MockService() : new HttpService();
 class NetworkService {
     static getChatHistory = async (user, friend) => {
         return service.getChatHistory(user, friend);

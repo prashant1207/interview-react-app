@@ -1,6 +1,5 @@
 import NetworkService from '../../services/network/network-service';
-import StorageService from '../../services/storage/storage-service';
-
+import Config from '../../services/config/config';
 class AppInteractor {
     static fetchMessages = async (user, friendState) => {
         let messages = await NetworkService.getChatHistory(user, friendState);
