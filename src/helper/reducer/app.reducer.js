@@ -15,6 +15,10 @@ class AppReducer {
     messages = (state, action) => {
         let result = []
         switch (action.type) {
+            case 'add_message':
+                result = [...state]
+                result.push(action.message);
+                break;
             case 'add':
                 result = [...state]
                 let item = {

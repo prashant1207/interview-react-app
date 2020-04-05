@@ -6,8 +6,10 @@ class AppInteractor {
         return messages;
     }
 
-    static streamChat = () => {
-        //To Do
+    static streamChat = async (dispatch, friend) => {
+        let message = await NetworkService.streamChat(friend, Date.now());
+        dispatch({ type: 'add_message', message: message });
+
     }
 
     static fetchUsers = async (ids) => {

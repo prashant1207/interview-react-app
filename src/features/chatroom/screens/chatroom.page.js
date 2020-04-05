@@ -12,7 +12,7 @@ const reducer = new Reducer()
 function Chatroom({ user, history }) {
     const [messageState, messageDispatch] = useReducer(reducer.messages, []);
     const [friendState, friendDispatch] = useReducer(reducer.friend, null);
-    const [greetingMessage, setGreetingMessage] = useState(user.name)
+    const [greetingMessage, setGreetingMessage] = useState(user.name);
 
     useEffect(() => {
         if (friendState) {
@@ -24,6 +24,11 @@ function Chatroom({ user, history }) {
         let messages = await Interactor.fetchMessages(user, friendState);
         messageDispatch({ type: 'update_all', messages: messages })
         setGreetingMessage(user.name + ' and ' + friendState.name);
+
+    }
+
+    function updateChat() {
+        Interactor.streamChat(messageDispatch, friendState);
     }
 
     useEffect(() => {
@@ -36,10 +41,11 @@ function Chatroom({ user, history }) {
         <div className="chatroom">
             <div className='header'>
                 <h2>{Interactor.appName()}</h2>
-                <button onClick={e => history.push('/')}>Go Home</button>
-
+                <div>
+                    <button onClick={e => updateChat()}>Update</button>
+                    <button onClick={e => history.push('/')}>Go Home</button>
+                </div>
             </div>
-
 
             <div className='friend-list-container'>
                 <h3>{greetingMessage}</h3>
