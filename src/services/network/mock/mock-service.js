@@ -40,10 +40,12 @@ class MockService {
     }
 
     getUsers = async (ids) => {
-        let result = [];
+        let operations = []
         ids.forEach(id => {
-            result.push(this.getUser(id));
+            operations.push(this.getUser(id));
         });
+
+        let result = await Promise.all(operations);
 
         return result;
     }
