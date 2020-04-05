@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Prashant Tiwari",
+        "friends": [
+            2,
+            3
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Bonnie Jennings",
+        "friends": [
+            1,
+            3
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Tianna Dorsey",
+        "friends": [
+            1,
+            2
+        ]
+    }
+]
