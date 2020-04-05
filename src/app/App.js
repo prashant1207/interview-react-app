@@ -4,9 +4,8 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import Reducer from '../helper/reducer/app.reducer';
-import Chatroom from '../features/chatroom/screens/chatroom.page';
-import HomePage from '../features/home/screens/home.page';
+import { Reducer } from '../helper';
+import { Chatroom, Home } from '../features';
 import './App.css';
 
 const reducer = new Reducer();
@@ -18,7 +17,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact>
-            <HomePage dispatch={dispatch} />
+            <Home dispatch={dispatch} />
           </Route>
           <Route path="/chatroom">
             <Chatroom user={state} />

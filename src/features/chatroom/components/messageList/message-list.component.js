@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import Message from './message/message.component'
+import { Message } from '../../../common/components';
 import './message-list.component.css';
 
 function MessageList({ user, messages }) {

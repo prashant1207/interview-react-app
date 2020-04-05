@@ -1,9 +1,21 @@
-import NetworkService from '../../services/network/network-service';
-import Config from '../../services/config/config';
+import { NetworkService, StorageService, Config } from '../../services';
 class AppInteractor {
-    static fetchMessages = async (user, friendState) => {
-        let messages = await NetworkService.getChatHistory(user, friendState);
-        return messages;
+    static fetchMessages = async (user, friend) => {
+        let result = [];
+        let cached = StorageService.getMessages(user, friend);
+        if (cached) {
+            result = cached
+        } else {
+            result = await NetworkService.getChatHistory(user, friend);
+        }
+
+        return result;
+    }
+
+    static updateStorage = (user, friend, messages) => {
+        if (user && friend && messages) {
+            StorageService.saveMessages(user, friend, messages);
+        }
     }
 
     static streamChat = async (dispatch, friend) => {

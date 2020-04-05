@@ -1,8 +1,8 @@
 
 import React, { useEffect, useState } from "react";
 import { withRouter } from 'react-router-dom';
-import UserSelector from '../../common/components/userSelector/user-selector.component'
-import Interactor from '../../../helper/interactor/app.interactor';
+import { UserSelector } from '../../common/components';
+import { Interactor } from '../../../helper';
 import './home.page.css';
 
 function Home({ dispatch, history }) {

@@ -1,34 +1,35 @@
 
 import React, { useReducer, useState, useEffect } from "react";
 import { withRouter } from 'react-router-dom';
-import Chatbox from '../components/chatbox/chatbox.component';
-import Friends from '../components/friends/friends.component';
-import MessageList from '../components/messageList/message-list.component';
-import Interactor from '../../../helper/interactor/app.interactor';
-import Reducer from '../../../helper/reducer/app.reducer';
+import { Chatbox, Friends, MessageList } from '../components';
+import { Interactor, Reducer } from '../../../helper';
 import './chatroom.page.css';
 const reducer = new Reducer()
 
 function Chatroom({ user, history }) {
-    const [messageState, messageDispatch] = useReducer(reducer.messages, []);
-    const [friendState, friendDispatch] = useReducer(reducer.friend, null);
+    const [messages, messageDispatch] = useReducer(reducer.messages, []);
+    const [friend, friendDispatch] = useReducer(reducer.friend, null);
     const [greetingMessage, setGreetingMessage] = useState(user.name);
 
     useEffect(() => {
-        if (friendState) {
+        if (friend) {
             fetchMessages();
         }
-    }, [friendState])
+    }, [friend])
+
+    useEffect(() => {
+        Interactor.updateStorage(user, friend, messages);
+    }, [messages])
 
     async function fetchMessages() {
-        let messages = await Interactor.fetchMessages(user, friendState);
+        let messages = await Interactor.fetchMessages(user, friend);
         messageDispatch({ type: 'update_all', messages: messages })
-        setGreetingMessage(user.name + ' and ' + friendState.name);
+        setGreetingMessage(user.name + ' and ' + friend.name);
 
     }
 
     function updateChat() {
-        Interactor.streamChat(messageDispatch, friendState);
+        Interactor.streamChat(messageDispatch, friend);
     }
 
     useEffect(() => {
@@ -57,7 +58,7 @@ function Chatroom({ user, history }) {
                 </div>
             </div>
             <br />
-            <MessageList user={user} messages={messageState} />
+            <MessageList user={user} messages={messages} />
             <br />
 
             <Chatbox user={user} dispatch={messageDispatch} />
