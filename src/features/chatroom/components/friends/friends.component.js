@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import UserSelector from '../../../common/components/userSelector/user-selector.component';
-import Interactor from '../../../../helper/interactor/app.interactor';
+import { UserSelector } from '../../../common/components';
+import { Interactor } from '../../../../helper';
 import './friends.component.css';
 
 function Friends({ friends, dispatch }) {
@@ -36,4 +36,4 @@ function Friends({ friends, dispatch }) {
     );
 }
 
-export default Friends;
+export default React.memo(Friends);

@@ -66,4 +66,4 @@ function Chatroom({ user, history }) {
     );
 }
 
-export default withRouter(Chatroom);
+export default React.memo(withRouter(Chatroom));
