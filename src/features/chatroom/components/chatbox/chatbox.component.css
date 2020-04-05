@@ -1,0 +1,15 @@
+.chatbox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-box {
+    font-size: 18px;
+    flex-grow: 6;
+}
+
+.note {
+    font-size: 10px;
+    font-weight: 300;
+}
