@@ -1,11 +1,16 @@
-import React, { useReducer } from 'react';
+/* eslint-disable import/first */
+import React, { useReducer, Suspense } from 'react';
 import {
   BrowserRouter,
   Switch,
   Route,
 } from 'react-router-dom';
 import { Reducer } from '../helper';
-import { Chatroom, Home } from '../features';
+
+const Home = React.lazy(() => import('../features/home/screens/home.page'));
+const Chatroom = React.lazy(() => import('../features/chatroom/screens/chatroom.page'));
+
+
 import './App.css';
 
 const reducer = new Reducer();
@@ -15,14 +20,16 @@ function App() {
   return (
     <div className='App'>
       <BrowserRouter>
-        <Switch>
-          <Route path="/" exact>
-            <Home dispatch={dispatch} />
-          </Route>
-          <Route path="/chatroom">
-            <Chatroom user={state} />
-          </Route>
-        </Switch>
+        <Suspense fallback={<div>Loading</div>}>
+          <Switch>
+            <Route path="/" exact>
+              <Home dispatch={dispatch} />
+            </Route>
+            <Route path="/chatroom">
+              <Chatroom user={state} />
+            </Route>
+          </Switch>
+        </Suspense>
       </BrowserRouter>
     </div>
   );
