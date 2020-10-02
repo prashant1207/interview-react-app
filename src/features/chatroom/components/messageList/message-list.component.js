@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Message } from '../../../common/components';
 import './message-list.component.css';
 
@@ -22,4 +22,4 @@ function MessageList({ user, messages }) {
     );
 }
 
-export default MessageList;
+export default React.memo(MessageList);

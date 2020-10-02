@@ -18,4 +18,4 @@ function Chatbox({ user, dispatch }) {
     );
 }
 
-export default Chatbox;
+export default React.memo(Chatbox);

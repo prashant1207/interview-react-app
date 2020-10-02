@@ -19,7 +19,7 @@ function Chatroom({ user, history }) {
 
     useEffect(() => {
         Interactor.updateStorage(user, friend, messages);
-    }, [messages])
+    }, [messages, friend, user])
 
     async function fetchMessages() {
         let messages = await Interactor.fetchMessages(user, friend);
@@ -36,7 +36,7 @@ function Chatroom({ user, history }) {
         if (!user.id) {
             history.push('/')
         }
-    }, [])
+    }, [user, history])
 
     return (
         <div className="chatroom">
@@ -66,4 +66,4 @@ function Chatroom({ user, history }) {
     );
 }
 
-export default withRouter(Chatroom);
+export default React.memo(withRouter(Chatroom));

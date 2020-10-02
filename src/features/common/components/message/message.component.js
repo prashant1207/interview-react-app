@@ -16,4 +16,4 @@ function Message({ message, isSelf }) {
     );
 }
 
-export default Message;
+export default React.memo(Message);
